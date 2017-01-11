@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>page Controle</title>
+</head>
+<body>
+<h:form>
+<h:panelGrid columns="2">
+<h:outputLabel value="email"></h:outputLabel>
+<h:inputText value="#{controleur.email}" ></h:inputText>
+<h:outputLabel value="password"></h:outputLabel>
+<h:inputSecret value="#{controleur.password}" ></h:inputSecret>
+</h:panelGrid>
+<h:commandButton action="#{controleur.controler}" value="s'authentifier">
+<f:ajax execute="message" render="sortieajax"></f:ajax>
+</h:commandButton>
+<h:outputText id="sortieajax" value="#{controleur.message}"></h:outputText>
+</h:form>
+</body>
+</html>
