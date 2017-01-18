@@ -33,9 +33,9 @@ public class Utilisateur {
 	private Date derniere_mise_a_jour;
 	@Column(nullable = false)
 	private String modifie_par;
-	// @ManyToOne
-	// @JoinColumn(name = "ROLE_FK")
-	// private Role role;
+@ManyToOne
+@JoinColumn(name = "ROLE_FK")
+	private Role role;
 
 	public Utilisateur() {
 		super();
@@ -115,7 +115,7 @@ public class Utilisateur {
 	
 	
 	
-	/*
+	
 	public Role getRole() {
 		return role;
 	}
@@ -123,5 +123,5 @@ public class Utilisateur {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	*/
+	
 }

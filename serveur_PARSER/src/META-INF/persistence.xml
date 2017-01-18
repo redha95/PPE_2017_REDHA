@@ -5,7 +5,8 @@
              <persistence-unit name="creationutilisateur" transaction-type="RESOURCE_LOCAL">
                
       	<class>modele.Utilisateur</class>  
-    	<!-- <class>modele.Role</class> -->
+    	<class>modele.Role</class>
+    	<class>modele.Action</class>
     	 
       <properties>
          <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>

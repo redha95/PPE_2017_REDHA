@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import modele.Role;
 import modele.Utilisateur;
 import ressources.FournisseurDePersistance;
 
@@ -23,16 +24,20 @@ public class Resultat {
 		return employees;
 	}
 	
-	public void enregistrer() {
-		EntityManager em = FournisseurDePersistance.getInstance().fournir();
-		em.getTransaction().begin();
-		System.out.println("TAILLE : " + employees.size());
-		for(Utilisateur obj : employees) {
-			System.out.println(obj);
-			em.persist(obj);
-		}
-		em.getTransaction().commit();
-		em.close();
-		FournisseurDePersistance.getInstance().detruire();
+	public boolean enregistrer() {
+		EntityManager em = null;
+		try {
+				em = FournisseurDePersistance.getInstance().fournir();
+				em.getTransaction().begin();
+				Role rolemagasin = (Role) em.createNativeQuery("select * from role where role='magasin'", Role.class).getSingleResult();
+				for(Utilisateur ref : employees) {
+					rolemagasin.ajoutUtilisateur(ref);
+				}
+				em.getTransaction().commit();
+		return true;		
+		} catch (Exception e) {e.printStackTrace(); return false; }
+		finally {
+			em.close();
+		}	
 	}
 }
